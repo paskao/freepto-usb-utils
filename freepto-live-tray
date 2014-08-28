@@ -158,15 +158,11 @@ class PersistenceHelper(gtk.Window):
 
         # 2 columns layout
         self.warning_box = gtk.HBox(False, 0)
-        cols_box = gtk.HBox(False, 6)
-
-        self.helper_box = gtk.VBox(False, 6)
-        cols_box.pack_start(self.helper_box, True, padding=10)
-        cols_box.pack_start(self.get_info_widget(), False, padding=6)
+        self.cols_box = gtk.HBox(False, 6)
 
         main_box.pack_start(menu_bar, False)
         main_box.pack_start(self.warning_box, False)
-        main_box.pack_start(cols_box, False, padding=8)
+        main_box.pack_start(self.cols_box, False, padding=8)
 
         self.refresh()
 
@@ -203,15 +199,21 @@ class PersistenceHelper(gtk.Window):
             self.warning_box.pack_start(infobar, True)
 
         # Removing children
-        for child in self.helper_box.get_children():
-            self.helper_box.remove(child)
+        for child in self.cols_box.get_children():
+            self.cols_box.remove(child)
 
         if self.icon.status == 'ABSENT':
-            self.helper_box.add(AbsentWidget(self.icon, self))
+            helper = AbsentWidget(self.icon, self)
         elif self.icon.status == 'LIVE':
-            self.helper_box.add(LiveWidget())
+            helper = LiveWidget()
         else:
-            self.helper_box.add(MountedWidget())
+            helper = MountedWidget()
+
+        info = self.get_info_widget()
+        info.show_all()
+        self.cols_box.pack_start(helper, True, padding=10)
+        self.cols_box.pack_start(info, False, padding=6)
+
 
     def get_file_menu(self):
         '''
