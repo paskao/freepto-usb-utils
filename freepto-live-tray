@@ -262,7 +262,7 @@ class PersistenceHelper(gtk.Window):
         '''
         device = get_root_device()
         available = _('No') if self.icon.status == 'ABSENT' else _('Yes')
-        mount= _('Yes') if self.icon.status == 'MOUNT' else _('No')
+        mount= _('Yes') if self.icon.status == 'MOUNTED' else _('No')
 
         xpadding = 4
         ypadding = 4
