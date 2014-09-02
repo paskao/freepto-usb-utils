@@ -10,6 +10,10 @@ import gettext
 gettext.textdomain('freepto-usb-utils')
 _ = gettext.gettext
 import vte
+import tempfile
+import os
+import random
+import string
 
 
 #{{{ Functions
@@ -22,6 +26,10 @@ def get_root_device():
         return check_output(["check-persistence", "get-root-device"]).strip()
     except CalledProcessError:
         return None
+
+def get_random_string(size=12, chars=string.ascii_letters + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
 
 #}}}
 
@@ -110,10 +118,25 @@ class CreatePersistenceWindow(gtk.Window):
     def on_delete_event(self, widget, data=None):
         return not self.process_end
 
-    def fork_command(self, command):
+    def run_makepersistence(self, passphrase, fill_random):
         self.progress_bar.set_fraction(0.3)
         self.progress_bar.set_text("Creating persistence...")
         self.progress_bar.show()
+
+        
+        dirname = tempfile.mkdtemp()
+        filename = get_random_string()
+        self.filepath = os.path.join(dirname, filename)
+        f = open(self.filepath, "w")
+        f.write(passphrase)
+
+        command = ["makepersistence", "-P", self.filepath, "%s2" % get_root_device()]
+        if not fill_random:
+            command.insert(1, "-r")
+        if os.getuid() != 0:
+            command = ["su-to-root", "-X", "-c", " ".join(command)]
+
+
         self.term.fork_command(command[0], command)
 
     def post_persistence(self, widget=None, data=None):
@@ -121,6 +144,9 @@ class CreatePersistenceWindow(gtk.Window):
         Exectued when make persistence is done.
         '''
         ret_code = self.term.get_child_exit_status()
+
+        if os.path.exists(self.filepath):
+            os.unlink(self.filepath)
 
         if ret_code == 0:
             self.infobar.set_success()
@@ -441,14 +467,8 @@ class AbsentWidget(HelperWidget):
         passphrase = self.options_form.passphrase_input.get_text()
         fill_random = self.options_form.fill_random_input.get_active()
 
-        command = ["makepersistence", "-p", passphrase, "%s2" % get_root_device()]
-        if not fill_random:
-            command.insert(1, "-r")
-        if os.getuid() != 0:
-            command = ["su-to-root", "-X", "-c", " ".join(command)]
-
         create_persistence = CreatePersistenceWindow()
-        create_persistence.fork_command(command)
+        create_persistence.run_makepersistence(passphrase, fill_random)
         create_persistence.connect('destroy', self.main_window.refresh)
         create_persistence.show_all()
         
