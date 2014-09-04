@@ -60,7 +60,7 @@ class PersistenceInfoBar(gtk.InfoBar):
         self.set_message_type(gtk.MESSAGE_WARNING)
         self.icon = gtk.Image()
         self.icon.set_from_stock(gtk.STOCK_DIALOG_WARNING, gtk.ICON_SIZE_DIALOG)
-        self.label = gtk.Label(_('Persistence is under creation. You must wait ' +
+        self.label = gtk.Label(_('Persistence is under creation. You must wait ' \
                                 'until the process ends.'))
         box = gtk.HBox(False, 6)
         box.pack_start(self.icon, False)
@@ -74,7 +74,7 @@ class PersistenceInfoBar(gtk.InfoBar):
         self.icon.set_from_stock(gtk.STOCK_DIALOG_ERROR, gtk.ICON_SIZE_DIALOG)
 
     def set_success(self):
-        text = _('Persistence created! You must reboot the system to use ' +
+        text = _('Persistence created! You must reboot the system to use ' \
                     'it.')
         self.label.set_markup(text)
         self.set_message_type(gtk.MESSAGE_INFO)
@@ -278,7 +278,7 @@ class PersistenceHelper(gtk.Window):
         dialog = gtk.AboutDialog()
         dialog.set_name('Persistence helper')
         dialog.set_website('https://github.com/AvANa-BBS/freepto-usb-utils')
-        dialog.set_comments(_('Persistence helper is a graphical tool to create the encrypted persistence partition for Freepto'))
+        dialog.set_comments(_("Persistence helper is a graphical tool to create the encrypted persistence partition for Freepto"))
         dialog.set_authors(['Freepto'])
         dialog.set_version('1.0')
         dialog.run()
@@ -328,7 +328,7 @@ class HelperWidget(gtk.VBox):
     def __init__(self):
         gtk.VBox.__init__(self, False, 10)
         self.add(WrappedLabel(_("<b>What's that?</b>")))
-        text = _('The persistence is the encrypted space on Freepto where ' +
+        text = _('The persistence is the encrypted space on Freepto where ' \
                     'your data is securely stored.')
         description = WrappedLabel(text)
         self.add(description)
@@ -418,7 +418,7 @@ class VirtualizedWarning(gtk.HBox):
 
     def __init__(self):
         gtk.HBox.__init__(self, False, 6)
-        text = _("Freepto seems running on a virtual machine. " +
+        text = _("Freepto seems running on a virtual machine. " \
                     "This could be a risk for your privacy.")
         icon = gtk.Image()
         icon.set_from_stock(gtk.STOCK_DIALOG_WARNING, gtk.ICON_SIZE_DIALOG)
