@@ -17,6 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Error"
+msgstr "Error"
+
 msgid "Persistence is under creation. You must wait until the process ends."
 msgstr ""
 "Se está creando la persistencia. Tienes que esperar que el proceso acabe."
@@ -41,9 +44,6 @@ msgstr "Persistencia creada"
 
 msgid "Completed"
 msgstr "Acabado"
-
-msgid "Error"
-msgstr "Error"
 
 msgid "Refresh"
 msgstr "Refrescar"
@@ -78,6 +78,15 @@ msgstr "Persistencia disponible:"
 
 msgid "Persistence mount:"
 msgstr "Persistencia montada"
+
+msgid "Disk size:"
+msgstr "Tamaño disco:"
+
+msgid "Live size:"
+msgstr "Tamaño live"
+
+msgid "Persistence size:"
+msgstr "Tamaño persistencia:"
 
 msgid "Device info"
 msgstr "Información del dispositivo"

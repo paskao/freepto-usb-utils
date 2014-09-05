@@ -17,6 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Error"
+msgstr "Errore"
+
 msgid "Persistence is under creation. You must wait until the process ends."
 msgstr ""
 "La persistenza si sta creando. Devi aspettare finchè il processo finisca."
@@ -40,9 +43,6 @@ msgstr "Creando la persistenza"
 msgid "Completed"
 msgstr "Completato"
 
-msgid "Error"
-msgstr "Errore"
-
 msgid "Refresh"
 msgstr "Aggiorna"
 
@@ -53,7 +53,7 @@ msgid "Help"
 msgstr "Aiuto"
 
 msgid "About"
-msgstr "A proposito di"
+msgstr "Informazioni"
 
 msgid ""
 "Persistence helper is a graphical tool to create the encrypted persistence "
@@ -76,6 +76,15 @@ msgstr "Persistenza disponibile:"
 
 msgid "Persistence mount:"
 msgstr "Persistenza montata:"
+
+msgid "Disk size:"
+msgstr "Dimensione disco:"
+
+msgid "Live size:"
+msgstr "Dimensione live:"
+
+msgid "Persistence size:"
+msgstr "Dimensione persistenza:"
 
 msgid "Device info"
 msgstr "Informazioni del dispositivo"

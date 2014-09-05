@@ -140,7 +140,7 @@ class CreatePersistenceWindow(gtk.Window):
 
     def run_makepersistence(self, passphrase, fill_random):
         self.progress_bar.set_fraction(0.3)
-        self.progress_bar.set_text("Creating persistence...")
+        self.progress_bar.set_text("Creating persistence")
         self.progress_bar.show()
 
         
