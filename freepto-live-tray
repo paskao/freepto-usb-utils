@@ -35,15 +35,19 @@ def get_disk_usage(device):
     try:
         disk_size = check_output(["check-persistence", "get-device-size"]).strip()
     except CalledProcessError:
-        return None
+        disk_size = _("Error")
     try:
         live_size = check_output(["check-persistence", "get-live-size"]).strip()
     except CalledProcessError:
-        return None
+        live_size = _("Error")
     try:
-        persistence_size = check_output(["check-persistence", "get-persistence-size"]).strip()
+        ret = call(['check-persistence', 'has-avail-persistence'])
+        if ret == 0:
+            persistence_size = check_output(["check-persistence", "get-persistence-size"]).strip()
+        else:
+            persistence_size = "-"
     except CalledProcessError:
-        return None
+        persistence_size = _("Error")
     return disk_size, live_size, persistence_size
  
 
