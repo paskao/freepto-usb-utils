@@ -14,6 +14,7 @@ import tempfile
 import os
 import random
 import string
+import dbus
 
 
 #{{{ Functions
@@ -522,8 +523,11 @@ class LiveWidget(HelperWidget):
         self.show_all()
 
     def reboot_system(self, widget=None, data=None):
-        cmd = "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart"
-        call(cmd.split(" "))
+        bus = dbus.SystemBus()
+        console_kit = dbus.get_object('org.freedesktop.ConsoleKit', '/org/freedesktop/ConsoleKit/Manager')
+        iface = dbus.Interface(console_kit, 'org.freedesktop.ConsoleKit.Manager')
+        if iface.CanRestart():
+            iface.Restart()
 
 #}}} 
 
