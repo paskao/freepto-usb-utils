@@ -524,7 +524,7 @@ class LiveWidget(HelperWidget):
 
     def reboot_system(self, widget=None, data=None):
         bus = dbus.SystemBus()
-        console_kit = dbus.get_object('org.freedesktop.ConsoleKit', '/org/freedesktop/ConsoleKit/Manager')
+        console_kit = bus.get_object('org.freedesktop.ConsoleKit', '/org/freedesktop/ConsoleKit/Manager')
         iface = dbus.Interface(console_kit, 'org.freedesktop.ConsoleKit.Manager')
         if iface.CanRestart():
             iface.Restart()
