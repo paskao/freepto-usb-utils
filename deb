@@ -6,7 +6,7 @@ Homepage: http://www.freepto.mx/
 Package: freepto-usb-utils
 Version: 0.2
 Maintainer: boyska <piuttosto@logorroici.org>
-Depends: python-gtk2, python-parted, python-pyudev, python-vte, virt-what, udisks
+Depends: python-gtk2, python-parted, python-pyudev, python-vte, virt-what, udisks, python
 Files: freepto-live-tray /usr/bin/
   check-persistence /usr/bin/
   check-virt /usr/bin
@@ -16,6 +16,8 @@ Files: freepto-live-tray /usr/bin/
   livehelper.ico /usr/share/pixmaps/
   makefreepto /usr/bin/
   makepersistence /usr/bin/
+  locale/es_ES/LC_MESSAGES/freepto-usb-utils.mo /usr/share/
+  locale/it_IT/LC_MESSAGES/freepto-usb-utils.mo /usr/share/
 
 Description: Graphical interface to create a new freepto
  This package contains various small tools to get persistence status, probe
