@@ -15,6 +15,9 @@ COMMAND can be one of:
 \tis-mounted\tcheck if persistence is mounted
 \tget-root-device\treturns the device from where freepto is running
 \thas-avail-persistence\tcheck if there is a persistence partition
+\tget-device-size\treturns the root device size
+\tget-live-size\treturns the live partition size
+\tget-persistence-size\treturns the persistence partition size
 
 Exit codes are:
 0\ton success
@@ -111,6 +114,60 @@ has_avail_persistence() {
 	return ${RET_PERSISTENCE_FOUND}
 }
 
+get_device_size() {
+	dev=$(get_root_device)
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	dev_name=$(basename $dev)
+	size=$(lsblk $dev -o KNAME,SIZE|awk "{if(\$1==\"${dev_name}\"){print \$2;}}")
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	echo $size
+	return ${RET_PERSISTENCE_FOUND}
+}
+
+get_live_size() {
+	dev=$(get_root_device)
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	dev_name=$(basename $dev)
+	size=$(lsblk $dev -o KNAME,SIZE|awk "{if(\$1==\"${dev_name}1\"){print \$2;}}")
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	echo $size
+	return ${RET_PERSISTENCE_FOUND}
+}
+
+get_persistence_size() {
+	avail_persistence=$(has_avail_persistence)
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	dev=$(get_root_device)
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	dev_name=$(basename $dev)
+	size=$(lsblk $dev -o KNAME,SIZE|awk "{if(\$1==\"${dev_name}2\"){print \$2;}}")
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	echo $size
+	return ${RET_PERSISTENCE_FOUND}
+}
+
+
 
 while getopts v opt; do
   case $opt in
@@ -151,6 +208,30 @@ case "$cmd" in
 			exit 1
 		fi
 		has_avail_persistence
+		exit $?
+		;;
+	get-device-size)
+		if [ $# != 0 ]; then
+			usage
+			exit 1
+		fi
+		get_device_size
+		exit $?
+		;;
+	get-live-size)
+		if [ $# != 0 ]; then
+			usage
+			exit 1
+		fi
+		get_live_size
+		exit $?
+		;;
+	get-persistence-size)
+		if [ $# != 0 ]; then
+			usage
+			exit 1
+		fi
+		get_persistence_size
 		exit $?
 		;;
 
