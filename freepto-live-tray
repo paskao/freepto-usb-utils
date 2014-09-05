@@ -394,6 +394,7 @@ class PersistenceOptionsForm(gtk.Frame):
 
         self.fill_random_label = WrappedLabel(_("Fill with random data"))
         self.fill_random_input = gtk.CheckButton()
+        self.fill_random_input.set_active(True)
 
         self.button = gtk.Button(_("Create persistence"))
 
