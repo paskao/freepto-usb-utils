@@ -36,11 +36,11 @@ msgstr ""
 
 msgid "Persistence created! You must reboot the system to use it."
 msgstr ""
-"La persistencia ha sido creada! Tienes que reiniciar el sistema para podera "
+"La persistencia ha sido creada! Tienes que reiniciar el sistema para poderla "
 "usar."
 
 msgid "Creating persistence"
-msgstr "Persistencia creada"
+msgstr "Creando la persistencia"
 
 msgid "Completed"
 msgstr "Acabado"
@@ -61,7 +61,7 @@ msgid ""
 "Persistence helper is a graphical tool to create the encrypted persistence "
 "partition for Freepto"
 msgstr ""
-"Persistence helper es una herramienta grafica que te permite crear la "
+"Persistence helper es una herramienta gráfica que te permite crear la "
 "partición de la persistencia cifrada de Freepto"
 
 msgid "No"
@@ -76,14 +76,14 @@ msgstr "Dispositivo de Freepto:"
 msgid "Persistence available:"
 msgstr "Persistencia disponible:"
 
-msgid "Persistence mount:"
+msgid "Persistence mounted:"
 msgstr "Persistencia montada"
 
 msgid "Disk size:"
 msgstr "Tamaño disco:"
 
 msgid "Live size:"
-msgstr "Tamaño live"
+msgstr "Tamaño live:"
 
 msgid "Persistence size:"
 msgstr "Tamaño persistencia:"
@@ -164,7 +164,7 @@ msgstr ""
 "reiniciar el sistema?)"
 
 msgid "Persistence not available (do you want to create it?)"
-msgstr "La persistencia no está dispoible (quiza quieres crearla?)"
+msgstr "La persistencia no está disponible (quizá quieres crearla?)"
 
 msgid "Checking..."
 msgstr "Verificando..."

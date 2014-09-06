@@ -328,7 +328,7 @@ class PersistenceHelper(gtk.Window):
         table.attach(WrappedLabel(available), 1, 2, 1, 2, \
                         xpadding=xpadding, ypadding=ypadding)
 
-        table.attach(WrappedLabel(_('Persistence mount:')), 0, 1, 2, 3, \
+        table.attach(WrappedLabel(_('Persistence mounted:')), 0, 1, 2, 3, \
                         xpadding=xpadding, ypadding=ypadding)
         table.attach(WrappedLabel(mount), 1, 2, 2, 3, \
                         xpadding=xpadding, ypadding=ypadding)
