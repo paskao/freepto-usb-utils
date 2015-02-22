@@ -648,13 +648,25 @@ class LiveIcon:
         persistence_helper = PersistenceHelper(self)
         persistence_helper.show_all()
 
+    def show_popup_if_is_absent(self):
+        if self.status == 'ABSENT':
+            self.show_persistence_helper(None)
+
 #}}}
 
 
 if __name__ == '__main__':
     import os
+    import argparse
     os.environ['PATH'] += ':.'
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--popup-if-notfound', help='Show help popup if persistence not found', action='store_true')
+
     icon = LiveIcon()
+    args = parser.parse_args()
+    if args.popup_if_notfound:
+        icon.show_popup_if_is_absent()
     gtk.main()
 
 # vim: set ft=python ts=4 sw=4 et fdm=marker:
