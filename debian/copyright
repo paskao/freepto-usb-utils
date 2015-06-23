@@ -1,0 +1,7 @@
+Name: freepto-usb-utils
+Source: http://github.com/avana-bbs/freepto-usb-utils
+
+Copyright: 2009-2012, Freepto devs <freepto@autistici.org>>
+License: GPL-3+
+ On Debian systems the full text of the GNU General Public 
+ License can be found in the `/usr/share/common-licenses/GPL-3'
